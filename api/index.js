@@ -17,12 +17,15 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const server = require("./src/app.js");
+const { conn } = require("./src/db.js");
+const getGenresIntoDB = require("./indexGenresFunctionBDD");
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+    //! FUNCION QUE ME TRAE TODOS LOS GENEROS Y LOS AGREGA A LA BDD EN EL MODELO GENRES
+    getGenresIntoDB();
+    console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
 });
