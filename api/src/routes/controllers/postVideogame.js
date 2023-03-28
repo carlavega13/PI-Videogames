@@ -1,7 +1,5 @@
 //*  REQUIERO EL MODELO VIDEOGAME
 const { Videogame, Genre } = require("../../db");
-//*  REQUIERO EL UUID GENERATOR
-const { v4: uuidv4 } = require("uuid");
 
 //! CONTROLADOR
 const postVideogame = async (videogame) => {
@@ -31,8 +29,8 @@ const postVideogame = async (videogame) => {
   if (typeof rating !== "number") {
     throw new Error("Rating must be a number");
   }
-  //! SI LLEGO ACA ES QUE TODOS LOS DATOS ESTAN VALIDADOS
 
+  //! SI LLEGO ACA ES QUE TODOS LOS DATOS ESTAN VALIDADOS
   const newVideogame = await Videogame.create({
     name,
     description,
@@ -41,11 +39,11 @@ const postVideogame = async (videogame) => {
     released,
     rating,
   });
-  //! ACA BUSCO LOS GENEROS DE LA DB QUE SEAN IGUALES A LOS GENEROS QUE ME PASARON POR REQ.BODY
+  //? ACA BUSCO LOS GENEROS DE LA DB QUE SEAN IGUALES A LOS GENEROS QUE ME PASARON POR REQ.BODY
   const found = await Genre.findAll({ where: { name: genres } });
-  //! AGREGO EL NUEVO VIDEOJUEGO AL LOS GENRES ENCONTRADOS
+  //? AGREGO EL NUEVO VIDEOJUEGO AL LOS GENRES ENCONTRADOS
   await newVideogame.addGenre(found);
-  //! RETORNO EL NUEVO VIDEOJUEGO
+  //? RETORNO EL NUEVO VIDEOJUEGO
   return newVideogame;
 };
 
