@@ -2,11 +2,22 @@ const { Router } = require("express");
 //* REQUIRE DE CONTROLLERS
 const postVideogame = require("./controllers/PostVideogame");
 const getVideogames = require("./controllers/getVideogames");
+const getVideogameById = require("./controllers/getVideogameById");
+const getVideogameByName = require("./controllers/getVideogameByName");
 
 //?  DECLARO EL ROUTER DE /VIDEOGAMES
 const videogamesRouter = Router();
 //TODO                   ROUTER /VIDEOGAME !
 
+//! RUTA GET NAME /NAME
+videogamesRouter.get("/name", async (req, res) => {
+  try {
+    const videogames = await getVideogameByName(req.query);
+    res.status(200).json({ msg: videogames });
+  } catch (error) {
+    res.status(400).json({ err: error.message });
+  }
+});
 //! RUTA DE POST
 videogamesRouter.post("/", async (req, res) => {
   try {
@@ -28,7 +39,14 @@ videogamesRouter.get("/", async (req, res) => {
   }
 });
 
-//! RUTA GET /videogames/:idVideogame
-videogamesRouter.get("/:idVideogame", (req, res) => {});
+//! RUTA GET ID /videogames/:id
+videogamesRouter.get("/:id", async (req, res) => {
+  try {
+    const videogame = await getVideogameById(req.params);
+    res.status(200).json({ msg: videogame });
+  } catch (error) {
+    res.status(400).json({ err: error.message });
+  }
+});
 
 module.exports = videogamesRouter;

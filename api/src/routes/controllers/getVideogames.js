@@ -1,7 +1,6 @@
 const axios = require("axios");
 const { API_KEY } = process.env;
 const { Videogame, Genre } = require("../../db");
-
 const getVideogames = async () => {
   try {
     //todo      ESTO ES DE LA API
