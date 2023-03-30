@@ -1,0 +1,4 @@
+.principalBox{
+display: flex;
+flex-wrap: wrap;
+}

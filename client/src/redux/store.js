@@ -10,4 +10,5 @@ const store = createStore(
   reducer,
   composeEnhancer(applyMiddleware(ThunkMiddleware))
 );
+
 export default store;
