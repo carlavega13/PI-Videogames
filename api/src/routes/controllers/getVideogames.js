@@ -11,9 +11,9 @@ const getVideogames = async () => {
     let p;
     //* ////////////////
     //!  WHILE HASTA QUE SE LLENE EL ARRAY DE IDS A BUSCAR
-    while (arrId.length < 100) {
+    while (arrId.length < 115) {
       //! GENERO UN ID RANDOM ENTRE 1 Y 500000
-      id = Math.round(Math.random() * (500000 - 1) + 1);
+      id = Math.round(Math.random() * (500 - 1) + 1);
       //! ME FIJO SI YA TENGO ESE NUMERO EN EL ARRAY
       const found = arrId.find((arrId) => arrId === id);
       //! SI LO TENGO CORTO ESTA VUELTA DE WHILE
@@ -25,6 +25,7 @@ const getVideogames = async () => {
         (res) => res.data,
         (err) => err.message
       );
+
       //! PUSHEO LA PROMESA AL ARRAY DE PROMESAS
       arrPromises.push(p);
     }
@@ -33,7 +34,16 @@ const getVideogames = async () => {
     let arrResult = await Promise.all(arrPromises).then((res) => res);
     //! MAPEO MI ARRAY DE RESULTADO PARA DEJAR LAS PROPIEDADES QUE ME INTERESAN
     arrResult = arrResult.map(
-      ({ id, name, platforms, description, released, rating, genres }) => {
+      ({
+        id,
+        name,
+        platforms,
+        description,
+        released,
+        rating,
+        genres,
+        background_image,
+      }) => {
         return {
           id,
           name,
@@ -42,26 +52,28 @@ const getVideogames = async () => {
           released,
           rating,
           genres,
+          img: background_image,
         };
       }
     );
-    //!RETORNO EL ARRAY DE RESULTADOS
 
     //todo API//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //*   ACA LOS DE LA BASE DE DATO  */
 
-    //!     ME GUARDO UNA PROMESA CON TODOS LOS JUEGOS DE LA DB QUE INCLUYAN LA RELACION CON LA TABLA DE GENEROS
+    // !     ME GUARDO UNA PROMESA CON TODOS LOS JUEGOS DE LA DB QUE INCLUYAN LA RELACION CON LA TABLA DE GENEROS
     let bd = await Videogame.findAll({ include: [{ model: Genre }] });
 
-    //! PASO ESE ARRAY BD A OBJ JS
+    // ! PASO ESE ARRAY BD A OBJ JS
     bd = JSON.parse(JSON.stringify(bd));
 
-    //! SI LA BD ESTA VACIA LE RESPONDO CON LA API NADA MAS
+    // ! SI LA BD ESTA VACIA LE RESPONDO CON LA API NADA MAS
+
     if (bd.length === 0) {
       return arrResult;
     }
-    //! SI LA BD TIENE COSAS RESPONDO CON LAS 2 COSAS JUNTAS
-    return [...arrResult, ...bd];
+    // ! SI LA BD TIENE COSAS RESPONDO CON LAS 2 COSAS JUNTAS
+    arrResult = [...arrResult, ...bd];
+    return arrResult;
   } catch (error) {
     return error.message;
   }
