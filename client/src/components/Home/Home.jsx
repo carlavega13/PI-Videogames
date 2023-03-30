@@ -1,18 +1,13 @@
-import { useEffect } from "react";
+
 import Cards from "../Cards/Cards";
 import NavBar from "../NavBar/NavBar";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllVideogames } from "../../redux/actions";
+
+import s from"./Home.module.css"
 
 function Home() {
-  const dispatch=useDispatch()
-
-  useEffect(()=>{
-   dispatch( getAllVideogames())
-   
-  },[])
+ 
     return (
-      <div>
+      <div className={s.principalBox}>
         <h1>COMPONENTE HOME</h1>
         <NavBar/>
         <Cards/>

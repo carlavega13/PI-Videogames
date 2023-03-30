@@ -6,12 +6,9 @@ function Cards () {
   //!     AGARRO A TODOS LOS VIDEOJUEGOS (ANTES PREGUNTO SI ESTAN "?")
   const allVideogames = useSelector((state)=>state?.allVideogames)
 
-
-  console.log(allVideogames);
-
 //!    RETURN EL MAP QUE RENDERIZA 1 CARD POR CADA JUEGO 
     return (
-      <div className={s.pricipalBox}>
+      <div className={s.principalBox}>
 
         {/* //? MAP 1 CARD POR JUEGO */}
         {
