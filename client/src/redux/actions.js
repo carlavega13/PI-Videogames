@@ -1,5 +1,7 @@
 import axios from "axios";
-import { GET_ALL_VIDEOGAMES } from "./actionsType";
+import host from "../localhost";
+
+import { GET_ALL_VIDEOGAMES, GET_VIDEOGAMES_BY_NAME } from "./actionsType";
 
 // //!  GET ALL VIDEO GAMES
 export const getAllVideogames = () => {
@@ -7,13 +9,31 @@ export const getAllVideogames = () => {
     try {
       //? HAGO MI REQUEST A MI BACK QUE TRAE JUEGOS DE LA API Y DE LA DB
       let videogames = await axios
-        .get("http://localhost:3001/videogames")
+        .get(`${host}/videogames`)
         .then((res) => res.data.msg);
 
       //?  FILTRO LOS OBJETOS VACIOS PARA QUE NO HAYA OBJETOS VACIOS
       videogames = videogames.filter((vid) => Object.entries(vid).length !== 0);
       //?  RETORNO LA ACTION
       return dispatch({ type: GET_ALL_VIDEOGAMES, payload: videogames });
+    } catch (error) {
+      return error.message;
+    }
+  };
+};
+
+//!     GET VIDEOGAMES BY NAME
+export const getVideogamesByName = (name) => {
+  return async (dispatch) => {
+    try {
+      const videogamesByName = await axios
+        .get(`${host}/videogames/name?name=${name}`)
+        .then((res) => res.data.msg);
+
+      return dispatch({
+        type: GET_VIDEOGAMES_BY_NAME,
+        payload: videogamesByName,
+      });
     } catch (error) {
       return error.message;
     }

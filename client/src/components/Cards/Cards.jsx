@@ -1,24 +1,24 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Card from "../Card/Card";
 import s from "./Cards.module.css"
+import Paginates from "../Paginated/Paginated";
 
-function Cards () {
-  //!     AGARRO A TODOS LOS VIDEOJUEGOS (ANTES PREGUNTO SI ESTAN "?")
-  const allVideogames = useSelector((state)=>state?.allVideogames)
+function Cards (props) {
 
-//!    RETURN EL MAP QUE RENDERIZA 1 CARD POR CADA JUEGO 
     return (
       <div className={s.principalBox}>
-
         {/* //? MAP 1 CARD POR JUEGO */}
         {
-         allVideogames?.map(({img,name,genres,rating,id})=>{
-          
-          return <Card key={id} id={id} name={name} img={img} genres={genres} rating={rating} />
+        props.sliceVideogame?.map(({img,name,genres,rating,id})=>{
+          if(img){
+                  return <Card key={id} id={id} name={name} img={img} genres={genres} rating={rating} />
+          }
+    
          })
 
         }
-        <Card/>
+       
       </div>
     );
   }

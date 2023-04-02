@@ -9,11 +9,11 @@
 }
 .name{
   color: rgb(13, 195, 38);
- 
-  text-overflow: ellipsis;
+
 }
 .principalBox{
   width: 20em;
+  height: 30em;
  background-color: aquamarine;
   border: 2px solid rgb(197, 124, 14);
   padding: 1em;

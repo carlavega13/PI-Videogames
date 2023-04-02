@@ -11,7 +11,7 @@ const getVideogames = async () => {
     let p;
     //* ////////////////
     //!  WHILE HASTA QUE SE LLENE EL ARRAY DE IDS A BUSCAR
-    while (arrId.length < 115) {
+    while (arrId.length < 150) {
       //! GENERO UN ID RANDOM ENTRE 1 Y 500000
       id = Math.round(Math.random() * (500 - 1) + 1);
       //! ME FIJO SI YA TENGO ESE NUMERO EN EL ARRAY
