@@ -20,6 +20,7 @@ let sliceVideogame=gamesCopia
 
 useEffect(()=>{
 sliceVideogame=gamesCopia?.slice(page*15,page*15+15)
+//! si recargo la pagina vuelvo a pedir los juegos 
 if(allVideogames.length===0){
   dispatch(getAllVideogames())
 }
