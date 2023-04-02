@@ -18,6 +18,30 @@ const getVideogameByName = async ({ name }) => {
     let response = await axios
       .get(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`)
       .then((res) => res.data.results);
+
+    response = response.map(
+      ({
+        id,
+        name,
+        platforms,
+        description,
+        released,
+        rating,
+        genres,
+        background_image,
+      }) => {
+        return {
+          id,
+          name,
+          platforms,
+          description,
+          released,
+          rating,
+          genres,
+          img: background_image,
+        };
+      }
+    );
     //! LA RESPUESTA LA RECORTO A 15 RESULTADOS
     if (foundDB.length >= 3) {
       response = response.slice(0, 12);

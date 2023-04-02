@@ -63,8 +63,10 @@
 //     return error.message;
 //   }
 // };
-let a = [
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-];
-a = a.slice(0, 15);
-console.log(a);
+const a = (v) => {
+  if (Object.entries(v).length === 0) {
+    return "vacio";
+  }
+  return "lleno";
+};
+console.log(a({}));
