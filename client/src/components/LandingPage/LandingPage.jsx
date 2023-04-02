@@ -6,6 +6,7 @@ const LandingPage=()=>{
     const dispatch=useDispatch()
 
     useEffect(()=>{
+        //! pido la informacion cuando levanto el server 
      dispatch( getAllVideogames())
      
     },[dispatch])

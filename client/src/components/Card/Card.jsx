@@ -24,7 +24,7 @@ function Card(props) {
   );
   }else{
     return (
-      <Link to={`videogames/detail/${props.id}`}>
+      <Link to={`/detail/${props.id}`}>
     <div className={s.principalBox}>
       {/*//? NAME DEL JUEGO */}
    <h1 className={s.name}>{props?.name}</h1>
