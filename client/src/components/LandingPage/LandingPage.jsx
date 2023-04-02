@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAllVideogames } from "../../redux/actions";
 import { useEffect } from "react";
 const LandingPage=()=>{
@@ -8,7 +8,7 @@ const LandingPage=()=>{
     useEffect(()=>{
      dispatch( getAllVideogames())
      
-    },[])
+    },[dispatch])
 return(
     <div>
         <h1> LANDING PAGE</h1>

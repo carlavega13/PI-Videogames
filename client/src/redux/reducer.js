@@ -1,6 +1,9 @@
-import { GET_ALL_VIDEOGAMES } from "./actionsType";
+import { GET_ALL_VIDEOGAMES, GET_VIDEOGAMES_BY_NAME } from "./actionsType";
 
-const initialState = { allVideogames: [] };
+const initialState = {
+  allVideogames: [],
+  gamesCopia: [],
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -8,10 +11,15 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allVideogames: action.payload,
+        gamesCopia: action.payload,
       };
-
+    case GET_VIDEOGAMES_BY_NAME:
+      return {
+        ...state,
+        gamesCopia: action.payload,
+      };
     default:
-      break;
+      return { ...state };
   }
 };
 export default reducer;
