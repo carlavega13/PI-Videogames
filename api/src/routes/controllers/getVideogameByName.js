@@ -18,8 +18,25 @@ const getVideogameByName = async ({ name }) => {
     let response = await axios
       .get(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`)
       .then((res) => res.data.results);
+    //!-------------llamo a la api denuevo para que me traiga en detail cada juego---------------------------------------------------------------
+    response = response.map(({ id }) => id);
+    let arrPromises = [];
+    let p;
+    for (let i = 0; i < response.length; i++) {
+      p = axios
+        .get(`https://api.rawg.io/api/games/${response[i]}?key=${API_KEY}`)
+        .then(
+          (res) => res.data,
+          (err) => err.message
+        );
+      arrPromises.push(p);
+    }
 
-    response = response.map(
+    let response1 = await Promise.all(arrPromises);
+
+    //!--------------------------------------------------------------------------------------------
+
+    response1 = response1.map(
       ({
         id,
         name,
@@ -44,15 +61,16 @@ const getVideogameByName = async ({ name }) => {
     );
     //! LA RESPUESTA LA RECORTO A 15 RESULTADOS
     if (foundDB.length >= 3) {
-      response = response.slice(0, 12);
-      response = [...response, foundDB[0], foundDB[1], foundDB[2]];
+      response1 = response1.slice(0, 12);
+      response1 = [...response1, foundDB[0], foundDB[1], foundDB[2]];
     } else {
-      response = response.slice(0, 15);
-      response = [...response, ...foundDB];
+      response1 = response1.slice(0, 15);
+      response1 = [...response1, ...foundDB];
     }
 
     //! RETORNO LA RESPUESTA
-    return response;
+
+    return response1;
   } catch (error) {
     return error.message;
   }

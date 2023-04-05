@@ -37,6 +37,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
+//!!!!!!!!!! CHE
 const { Videogame, Genre } = sequelize.models;
 //!                 RELACION DE MUCHOS A MUCHOS
 //?  UN VIDEOJUEGO PERTENECE A MUCHOS GENEROS A TRAVEZ DE VIDEOGAME_GENRE

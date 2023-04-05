@@ -1,7 +1,11 @@
 import axios from "axios";
 import host from "../localhost";
 
-import { GET_ALL_VIDEOGAMES, GET_VIDEOGAMES_BY_NAME } from "./actionsType";
+import {
+  GET_ALL_VIDEOGAMES,
+  GET_VIDEOGAMES_BY_NAME,
+  GET_GENRES,
+} from "./actionsType";
 
 // //!  GET ALL VIDEO GAMES
 export const getAllVideogames = () => {
@@ -34,6 +38,21 @@ export const getVideogamesByName = (name) => {
         type: GET_VIDEOGAMES_BY_NAME,
         payload: videogamesByName,
       });
+    } catch (error) {
+      return error.message;
+    }
+  };
+};
+
+//! GET GENRES
+export const getGenres = () => {
+  return async (dispatch) => {
+    try {
+      const genres = await axios
+        .get(`${host}/genres`)
+        .then((res) => res.data.msg);
+
+      return dispatch({ type: GET_GENRES, payload: genres });
     } catch (error) {
       return error.message;
     }

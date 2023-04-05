@@ -32,10 +32,11 @@ const handlerAdelante=()=>{
         if(props.page>1){
              props.setPage(props.page-1)
         }
-   
 
 }
-return(
+//! solo se renderiza si tengo mas de 15 juegos
+if(numbers.length!==0){
+  return(
     <div>
          <button onClick={handlerAtras}>{"<"}</button>
         {
@@ -46,5 +47,10 @@ return(
         <button onClick={handlerAdelante}>{">"}</button>
     </div>
 )
+}
+return (
+    <div></div>
+)
+
 }
 export default Paginates
