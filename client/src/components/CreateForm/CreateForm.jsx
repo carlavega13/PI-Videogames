@@ -1,0 +1,149 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getGenres } from "../../redux/actions";
+import validator from "./validator"
+
+const CreateForm=()=>{
+    const dispatch=useDispatch()
+    //* estado de la info del form
+const[formInf,setFormInf]=useState({
+    name:"",
+    description:"",
+    image:"",
+    released:"",
+    rating: 0,
+    genres:[],
+    platforms:[]
+})
+//* estado errors
+const [errors,setErrors]=useState({
+    name:"",
+    description:"",
+    image:"",
+    released:"",
+    rating:"",
+    genres:"",
+    platforms:""
+})
+    //* el use effect es para que despache al montarse la action get genres para traer los generos y posteriormente mapearlos 
+    useEffect(()=>{
+        //! despacho get genres 
+    dispatch(getGenres())
+    },[dispatch])
+    const {genres,allVideogames}=useSelector((status)=>status)
+    //!este array es para guardar las plataformas sin repetir
+    let platforms=[]
+    //! este foreach quita todas las plataformas y las mete en un array  
+    allVideogames?.forEach((juego)=>{
+
+    //     //! este for recorre cada array de plataformas del juego  
+     for (let i = 0; i <  juego?.platforms?.length; i++) {
+
+        //!si el juego no existe lo agrego al array plataforms
+     if(!(platforms.includes(juego.platforms[i].platform.name))){
+        platforms.push(juego.platforms[i].platform.name)
+     }
+        
+     }
+})
+//! este handler settea lo mismo que contenga el input en el estado correspondiente
+const handlerInputChange=(event)=>{
+
+    
+    setFormInf({
+        ...formInf,
+       [event.target.name]:event.target.value
+    })
+
+}
+
+
+//! este handler settea los array de plataforms y genres a los checkbox seleccionados 
+const handlerCheckbox=(event)=>{
+
+if(event.target.checked){
+setFormInf({
+    ...formInf,
+[event.target.name]:[...formInf[event.target.name],event.target.value]
+})
+}else{
+    setFormInf({
+        ...formInf,
+    [event.target.name]:formInf[event.target.name].filter((e)=>e!==event.target.value)
+    }) 
+}
+}
+ 
+
+//? este handler es del submit
+const handlerSubmit=(event)=>{
+event.preventDefault()
+validator(formInf,errors,setErrors)
+if(!errors.name||!errors.description||!errors.image||!errors.released||!errors.rating||!errors.genres||!errors.platforms){
+    console.log("paso");
+}
+
+}
+
+    return(
+        <div>
+            <form onSubmit={handlerSubmit}>
+                {/* //!NAMES */}
+            <label name="name">Name: </label>
+            <input onChange={handlerInputChange} value={formInf.name} type="text" name="name" />  
+
+              {/* //! DESCRIPTION */}
+            <label name="descrition">Description: </label>
+            <input onChange={handlerInputChange} value={formInf.description} type="text" name="description" />
+
+                {/* //! IMAGE */}
+            <label name="image">Image: </label>
+            <input onChange={handlerInputChange} value={formInf.image} type="text" name="image" />
+
+                 {/* //! RELEASED */}
+            <label name="released">Released: </label>
+            <input onChange={handlerInputChange} value={formInf.released} type="date" name="released"/>
+
+
+                 {/* //! RATING */}
+            <label name="rating">Rating: </label>
+            <input onChange={handlerInputChange} value={formInf.rating} type="number" name="rating"/>
+
+{/* //!generos/////////// */}
+ <label name="genres">Genres:</label>
+            <div>
+               {
+                genres?.map(({name,id})=>{
+                 return(
+                    <label key={id} name={name}>{name}
+                     <input onClick={handlerCheckbox} name="genres" value={name} type="checkbox"/>
+                     </label>
+                 )
+                })
+               }
+            </div>
+{/* //! ////////// */}
+
+{/* //!  //////platforms////// */}
+<label name="plataforms">Plataforms: </label>
+<div>
+    {
+        platforms?.map((platform)=>{
+
+         return( 
+         <label> {platform}
+            <input onClick={handlerCheckbox} name="platforms" value={platform} type="checkbox"/>
+         </label>)
+        })
+    }
+</div>
+
+<button type="submit">Enviar</button>
+
+</form>
+
+
+        </div>
+    )
+}
+export default CreateForm
