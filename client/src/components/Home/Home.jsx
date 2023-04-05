@@ -17,14 +17,18 @@ function Home() {
   const{ gamesCopia,allVideogames }= useSelector((state)=>state)
 
 let sliceVideogame=gamesCopia
+if(sliceVideogame.length>15){
+
+  sliceVideogame=gamesCopia?.slice(page*15,page*15+15)
+}
 
 useEffect(()=>{
-sliceVideogame=gamesCopia?.slice(page*15,page*15+15)
+},[page,gamesCopia])
 //! si recargo la pagina vuelvo a pedir los juegos 
-if(allVideogames.length===0){
+if(allVideogames?.length===0){
+  console.log("vacio");
   dispatch(getAllVideogames())
 }
-},[page,gamesCopia])
 
     return (
       <div className={s.principalBox}>

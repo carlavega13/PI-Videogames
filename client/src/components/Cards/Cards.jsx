@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+
+
 import Card from "../Card/Card";
 import s from "./Cards.module.css"
-import Paginates from "../Paginated/Paginated";
+
 
 function Cards (props) {
 
