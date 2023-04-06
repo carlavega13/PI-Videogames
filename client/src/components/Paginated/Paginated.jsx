@@ -19,6 +19,7 @@ if(cantidad>0){
 }
  //! este handlres cuando apretemos cualquier numero setea el page en el numero que apretemos 
 const handlerPaginater=(numero)=>{
+
 props.setPage(numero)
 }
 //! este handler maneja la flechita de adelante 
@@ -34,8 +35,8 @@ const handlerAdelante=()=>{
         }
 
 }
-//! solo se renderiza si tengo mas de 15 juegos
-if(numbers.length!==0){
+// ! solo se renderiza si tengo mas de 15 juegos
+if(numbers.length>1){
   return(
     <div>
          <button onClick={handlerAtras}>{"<"}</button>

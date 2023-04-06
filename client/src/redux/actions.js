@@ -5,6 +5,9 @@ import {
   GET_ALL_VIDEOGAMES,
   GET_VIDEOGAMES_BY_NAME,
   GET_GENRES,
+  POST_VIDEOGAME,
+  GET_AGAIN,
+  FILTER_CARDS,
 } from "./actionsType";
 
 // //!  GET ALL VIDEO GAMES
@@ -57,4 +60,27 @@ export const getGenres = () => {
       return error.message;
     }
   };
+};
+
+//! POST VIDEOGAME
+export const postVideogame = (videogame) => {
+  return async (dispatch) => {
+    try {
+      await axios.post(`${host}/videogames/`, videogame);
+
+      return dispatch({ type: POST_VIDEOGAME });
+    } catch (error) {
+      return error.message;
+    }
+  };
+};
+
+//! GET AGAIN
+export const getAgain = () => {
+  return { type: GET_AGAIN };
+};
+
+//! FILTER CARD
+export const filterCards = (element) => {
+  return { type: FILTER_CARDS, payload: element };
 };

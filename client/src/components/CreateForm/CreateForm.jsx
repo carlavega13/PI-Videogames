@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getGenres } from "../../redux/actions";
+import {postVideogame } from "../../redux/actions";
 import validator from "./validator"
 
 const CreateForm=()=>{
@@ -9,7 +9,7 @@ const CreateForm=()=>{
 const[formInf,setFormInf]=useState({
     name:"",
     description:"",
-    image:"",
+    img:"",
     released:"",
     rating: 0,
     genres:[],
@@ -19,17 +19,13 @@ const[formInf,setFormInf]=useState({
 const [errors,setErrors]=useState({
     name:"",
     description:"",
-    image:"",
+    img:"",
     released:"",
     rating:"",
     genres:"",
     platforms:""
 })
-    //* el use effect es para que despache al montarse la action get genres para traer los generos y posteriormente mapearlos 
-    useEffect(()=>{
-        //! despacho get genres 
-    dispatch(getGenres())
-    },[dispatch])
+
     const {genres,allVideogames}=useSelector((status)=>status)
     //!este array es para guardar las plataformas sin repetir
     let platforms=[]
@@ -40,8 +36,8 @@ const [errors,setErrors]=useState({
      for (let i = 0; i <  juego?.platforms?.length; i++) {
 
         //!si el juego no existe lo agrego al array plataforms
-     if(!(platforms.includes(juego.platforms[i].platform.name))){
-        platforms.push(juego.platforms[i].platform.name)
+     if(!(platforms?.includes(juego?.platforms[i]?.platform?.name))){
+        platforms.push(juego?.platforms[i]?.platform?.name)
      }
         
      }
@@ -73,14 +69,17 @@ setFormInf({
     }) 
 }
 }
+
  
 
 //? este handler es del submit
 const handlerSubmit=(event)=>{
 event.preventDefault()
 validator(formInf,errors,setErrors)
-if(!errors.name||!errors.description||!errors.image||!errors.released||!errors.rating||!errors.genres||!errors.platforms){
-    console.log("paso");
+if(!errors.name||!errors.description||!errors.img||!errors.released||!errors.rating||!errors.genres||!errors.platforms){
+    
+    dispatch(postVideogame(formInf))
+    return alert("Your game has been posted")
 }
 
 }
@@ -90,15 +89,15 @@ if(!errors.name||!errors.description||!errors.image||!errors.released||!errors.r
             <form onSubmit={handlerSubmit}>
                 {/* //!NAMES */}
             <label name="name">Name: </label>
-            <input onChange={handlerInputChange} value={formInf.name} type="text" name="name" />  
+            <input onChange={handlerInputChange} value={formInf?.name} type="text" name="name" />  
 
               {/* //! DESCRIPTION */}
             <label name="descrition">Description: </label>
             <input onChange={handlerInputChange} value={formInf.description} type="text" name="description" />
 
                 {/* //! IMAGE */}
-            <label name="image">Image: </label>
-            <input onChange={handlerInputChange} value={formInf.image} type="text" name="image" />
+            <label name="img">Image: </label>
+            <input onChange={handlerInputChange} value={formInf.img} type="text" name="img" />
 
                  {/* //! RELEASED */}
             <label name="released">Released: </label>

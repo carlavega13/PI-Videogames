@@ -22,7 +22,7 @@ const { conn } = require("./src/db.js");
 const getGenresIntoDB = require("./indexGenresFunctionBDD");
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(3001, () => {
     //! FUNCION QUE ME TRAE TODOS LOS GENEROS Y LOS AGREGA A LA BDD EN EL MODELO GENRES
     getGenresIntoDB();
