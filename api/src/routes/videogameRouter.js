@@ -1,6 +1,6 @@
 const { Router } = require("express");
 //* REQUIRE DE CONTROLLERS
-const postVideogame = require("./controllers/PostVideogame");
+const postVideogame = require("./controllers/postVideogame");
 const getVideogames = require("./controllers/getVideogames");
 const getVideogameById = require("./controllers/getVideogameById");
 const getVideogameByName = require("./controllers/getVideogameByName");
@@ -26,6 +26,7 @@ videogamesRouter.post("/", async (req, res) => {
     res.status(200).json({ msg: newVideogame });
   } catch (error) {
     //? SI CACHEO UN ERROR LO MANDO
+    console.log(error.message);
     res.status(400).json({ err: error.message });
   }
 });

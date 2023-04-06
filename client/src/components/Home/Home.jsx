@@ -6,7 +6,7 @@ import Paginates from "../Paginated/Paginated";
 
 import s from"./Home.module.css"
 import { useDispatch, useSelector } from "react-redux";
-import { getAllVideogames } from "../../redux/actions";
+import { getAllVideogames, getGenres} from "../../redux/actions";
 
 function Home() {
   const [page,setPage]=useState(1)
@@ -14,20 +14,30 @@ function Home() {
 
 
   //!     AGARRO A TODOS LOS VIDEOJUEGOS (ANTES PREGUNTO SI ESTAN "?")
-  const{ gamesCopia,allVideogames }= useSelector((state)=>state)
+  const{ gamesCopia,allVideogames,genres }= useSelector((state)=>state)
 
-let sliceVideogame=gamesCopia
-if(sliceVideogame.length>15){
+  let sliceVideogame=gamesCopia
 
-  sliceVideogame=gamesCopia?.slice(page*15,page*15+15)
+if(sliceVideogame.length>16){
+  if(page===1){
+    sliceVideogame=gamesCopia?.slice(0*15,page*15)
+  }else{
+    sliceVideogame=gamesCopia?.slice(page*15,page*15+15)
+  }
+  
 }
 
 useEffect(()=>{
+
 },[page,gamesCopia])
 //! si recargo la pagina vuelvo a pedir los juegos 
 if(allVideogames?.length===0){
-  console.log("vacio");
+
   dispatch(getAllVideogames())
+}
+//! si recargo la pag pido denuevo los generos
+if(genres?.length===0){
+  dispatch(getGenres())
 }
 
     return (
