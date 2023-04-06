@@ -9,7 +9,7 @@ const {id}=useParams()
 //? SACO LOS VIDEOJUEGOS DEL ESTADO GLOBAL 
 const videogames=useSelector(state=>state?.gamesCopia)
 //?FILTRO PARA QUE QUEDE UN ARRAY CON UN OBJETO  
-let juego=videogames.filter(game=>game.id===Number(id))
+let juego=videogames.filter(game=>game.id==id)
 //? EN JUEGO TENGO UN SOLO OBJETO
 juego=juego.shift()
 
@@ -31,12 +31,15 @@ return(
     {juego.genres?.map(g=>{
         return <p key={g.genres?.id}>{g.name}</p>
     })}
+        {juego.Genres?.map(g=>{
+        return <p key={g.Genres?.id}>{g.name}</p>
+    })}
     {/*//? FOTO DEL JUEGO */}
     <img className={s.detailFoto} src={juego.img} alt=" "/>
         {/*//? MAPEO CADA PLATAFORMA Y RENDERIZO UN P POR CADA GENERO */}
     {
         juego.platforms?.map(g=>{
-            return <p key={g.platform?.id} className={s.platafomsP}>{g.platform.name}</p>
+            return <p key={g.platform?.id} className={s.platafomsP}>{g.platform?g.platform.name:g}</p>
         })
     }
     {/*//?  FECHA DE LANZAMIENTO*/}

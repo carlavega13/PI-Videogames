@@ -1,5 +1,5 @@
 const validator = (
-  { name, description, image, released, rating, genres, platforms },
+  { name, description, img, released, rating, genres, platforms },
   errors,
   setErrors
 ) => {
@@ -24,7 +24,7 @@ const validator = (
 
   //! valido la IMAGE
   //? valido que la imagen no este vacia
-  if (image.trim().length === 0) {
+  if (img.trim().length === 0) {
     errors1.image = "A link is required";
   }
 
@@ -34,7 +34,7 @@ const validator = (
     errors1.released = "The date cannot be empty";
   }
   //? que la fecha
-  if (released.trim().length > 8) {
+  if (released.trim().length > 10) {
     errors1.released = "The date cannot be longer than 8 characters";
   }
 
@@ -44,7 +44,7 @@ const validator = (
     errors.rating = "The rating cannot be empty";
   }
   //? el rating no puede ser mas de 5
-  if (rating > 5) {
+  if (rating > 5 || rating < 0) {
     errors1.rating = "The rating must be between 0 and 5";
   }
 
@@ -60,7 +60,7 @@ const validator = (
     ...errors,
     name: errors1.name,
     description: errors1.description,
-    image: errors1.image,
+    img: errors1.image,
     released: errors1.released,
     rating: errors1.rating,
     genres: errors1.genres,

@@ -21,21 +21,24 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      plataforms: {
+      platforms: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
       },
-      image: {
+      img: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
       released: {
-        type: DataTypes.STRING(8),
+        type: DataTypes.STRING(10),
         allowNull: false,
       },
       rating: {
         type: DataTypes.FLOAT,
         allowNull: false,
+      },
+      made: {
+        type: DataTypes.BOOLEAN,
       },
     },
     { timestamps: false }
