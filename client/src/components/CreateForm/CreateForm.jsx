@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {postVideogame } from "../../redux/actions";
 import validator from "./validator"
+import {useNavigate,Link} from "react-router-dom"
 
 const CreateForm=()=>{
     const dispatch=useDispatch()
@@ -25,6 +26,7 @@ const [errors,setErrors]=useState({
     genres:"",
     platforms:""
 })
+const navigate=useNavigate()
 
     const {genres,allVideogames}=useSelector((status)=>status)
     //!este array es para guardar las plataformas sin repetir
@@ -75,11 +77,17 @@ setFormInf({
 //? este handler es del submit
 const handlerSubmit=(event)=>{
 event.preventDefault()
+//!valido la info
 validator(formInf,errors,setErrors)
+//! si no tengo ningun error ....
 if(!errors.name||!errors.description||!errors.img||!errors.released||!errors.rating||!errors.genres||!errors.platforms){
-    
+    //! despacho la action que postea
     dispatch(postVideogame(formInf))
-    return alert("Your game has been posted")
+    //! tiro un alert para decir que se posteo el game
+    alert("Your game has been posted")
+    //! y me muevo al home 
+    navigate("/videogames")
+
 }
 
 }
@@ -140,7 +148,9 @@ if(!errors.name||!errors.description||!errors.img||!errors.released||!errors.rat
 <button type="submit">Enviar</button>
 
 </form>
-
+<Link to="/videogames">
+        <button>HOME</button>
+        </Link>
 
         </div>
     )

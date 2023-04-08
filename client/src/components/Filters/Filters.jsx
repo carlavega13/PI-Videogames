@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux"
-import { filterCards } from "../../redux/actions"
+import { filterCards,orderCards } from "../../redux/actions"
 const Filters=()=>{
     const dispatch=useDispatch()
     const {genres}=useSelector(status=>status)
 //?    HANDLER SELECT CHANGE
 const handlerSelectChange=(event)=>{
-    console.log(event.target.name);
+
     if(event.target.name==="order"){
-        // dispatch(orderCards(event.target.value))
+
+        dispatch(orderCards(event.target.value))
     }
     if(event.target.name==="filter"){
         dispatch(filterCards(event.target.value))
@@ -16,13 +17,13 @@ const handlerSelectChange=(event)=>{
     return(
         <div>
             {/* //!  ORDENAMIENTO */}
-            <select value="order" >
+            <select onChange={handlerSelectChange} name="order" >
             <option >Alphabetical Order</option>
              <option value="A-Z">A-Z</option>
              <option value="Z-A">Z-A</option>
             </select>
 
-            <select value="order">
+            <select onChange={handlerSelectChange} name="order">
             <option >Rating</option>
                 <option value="Upward">Upward</option>
                 <option value="Downward">Downward</option>
