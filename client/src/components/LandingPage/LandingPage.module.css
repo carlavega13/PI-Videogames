@@ -1,0 +1,37 @@
+.fondo{
+    width:  100vw;
+    height: 100vh;
+    background-image: url("https://media.tenor.com/2i_ricFReugAAAAC/game-video-games.gif");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+.butt{
+    border: 1px solid rgba(245, 222, 179, 0.697);
+    font-weight: 500;
+    font-size: 1em;
+    letter-spacing: 0.3em;
+    padding: 0.8em;
+    border-radius: 6px;
+    cursor:pointer;
+    background-image: linear-gradient(to left,#b0e0a4,#FFA1B3,#CBF5AF);
+    background-size: 200%;
+    box-shadow: 0.5em 0em 9em 0.5em #252525;
+    transition: 1s;
+}
+.butt:hover{
+    background-position: right;
+    box-shadow: 0.5em 0em 1em 0.5em #CBF5AF;
+}
+
+
+.texto{
+    animation:textoAparece 2s linear both;
+    color: #252525a9;
+
+    
+}
+ @keyframes textoAparece{0%{letter-spacing:.6em;opacity:0}40%{opacity:.6}100%{letter-spacing:normal;opacity:1}}

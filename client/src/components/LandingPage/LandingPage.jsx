@@ -2,21 +2,25 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllVideogames,getGenres } from "../../redux/actions";
 import { useEffect } from "react";
+import s from "./LandingPage.module.css"
+import { BsGithub } from 'react-icons/bs';
 const LandingPage=()=>{
     const dispatch=useDispatch()
+console.log("haceindo get desde el landing");
 
+    dispatch(getGenres())
     useEffect(()=>{
         //! pido la informacion cuando levanto el server 
-     dispatch( getAllVideogames())
-     dispatch(getGenres())
-    },[dispatch])
+    },[])
 return(
-    <div>
-        <h1> LANDING PAGE</h1>
+    <div className={s.fondo}>
+        <span className={s.texto}>Videogames PI </span >
      <Link to="/videogames">
-        <button>GO</button>
+        <button className={s.butt}>VISIT GAMES</button>
         </Link>
-        <img src="https://prod.assets.earlygamecdn.com/images/Nunu-and-Willump-Bee-Skin.jpg?transform=article3x_webp"></img>
+        <Link to="https://github.com/carlavega13">
+<h1 className={s.texto}>Created by Charly    <BsGithub/></h1>
+</Link>
     </div>
 )
 }

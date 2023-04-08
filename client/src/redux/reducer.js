@@ -48,17 +48,21 @@ const reducer = (state = initialState, action) => {
       if (action.payload === "Created") {
         return {
           ...state,
-          gamesCopia: state.gamesCopia.filter((juego) => juego.made === true),
+          gamesCopia: state.allVideogames.filter(
+            (juego) => juego.made === true
+          ),
         };
       }
       if (action.payload === "Existing") {
         return {
           ...state,
-          gamesCopia: state.gamesCopia.filter((juego) => juego.made === false),
+          gamesCopia: state.allVideogames.filter(
+            (juego) => juego.made === false
+          ),
         };
       }
       const juegosFiltrados = [];
-      state.gamesCopia.forEach((juego) => {
+      state.allVideogames.forEach((juego) => {
         //! si es de la db GENRES va a empezar con mayuscula
         if (juego.Genres) {
           for (let i = 0; i < juego?.Genres?.length; i++) {

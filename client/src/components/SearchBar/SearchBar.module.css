@@ -1,0 +1,35 @@
+.inputS{
+    background-color: transparent;
+    color:#FAFFD6 ;
+    font-size: 1.5em;
+    margin-top: 0.6em;
+    margin-bottom: 0.3em;
+    font-weight: 700;
+    -webkit-text-stroke: 1.5px rgba(210, 150, 150, 0.658);
+    border: 3px solid #FAFFD6;
+    padding: 0.1em;
+    border-radius: 10px;
+    box-shadow: 0.5em 0em 3em 0.5em #25252559;
+}
+.butt{
+    border: 1px solid rgba(245, 222, 179, 0.697);
+    font-weight: 500;
+    margin-left: 0.5em;
+    font-size: 1em;
+    letter-spacing: 0.3em;
+    padding-top:0.6em ;
+    padding-bottom:0.6em ;
+    padding-left:0.9em ;
+    padding-right:0.9em ;
+
+    border-radius: 6px;
+    cursor:pointer;
+    background-image: linear-gradient(to left,#b0e0a4,#FFA1B3,#CBF5AF);
+    background-size: 200%;
+    box-shadow: 0.5em 0em 3em 0.2em #2525256a;
+    transition: 1s;
+}
+.butt:hover{
+    background-position: right;
+    box-shadow: 0.5em 0em 5em 0.5em #252525bd;
+}

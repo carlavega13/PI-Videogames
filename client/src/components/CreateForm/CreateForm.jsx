@@ -17,7 +17,7 @@ const[formInf,setFormInf]=useState({
     platforms:[]
 })
 //* estado errors
-const [errors,setErrors]=useState({
+let errors={
     name:"",
     description:"",
     img:"",
@@ -25,7 +25,7 @@ const [errors,setErrors]=useState({
     rating:"",
     genres:"",
     platforms:""
-})
+}
 const navigate=useNavigate()
 
     const {genres,allVideogames}=useSelector((status)=>status)
@@ -78,18 +78,21 @@ setFormInf({
 const handlerSubmit=(event)=>{
 event.preventDefault()
 //!valido la info
-validator(formInf,errors,setErrors)
+ errors =validator(formInf,errors)
 //! si no tengo ningun error ....
-if(!errors.name||!errors.description||!errors.img||!errors.released||!errors.rating||!errors.genres||!errors.platforms){
+if(!errors.name&&!errors.description&&!errors.img&&!errors.released&&!errors.rating&&!errors.genres&&!errors.platforms){
     //! despacho la action que postea
     dispatch(postVideogame(formInf))
+
     //! tiro un alert para decir que se posteo el game
     alert("Your game has been posted")
     //! y me muevo al home 
     navigate("/videogames")
 
+}else{
+  
+    alert("Data is missing or incorrect")
 }
-
 }
 
     return(
