@@ -107,31 +107,31 @@ setErrors(validator(formInf))
 // console.log("pasa",errors);
     return(
         <div className={s.fondo}>
-            <h1>Create your Game</h1>
+            <h1 className={s.titulo}>Create your Game</h1>
 
             <form  onSubmit={handlerSubmit}>
               <div className={s.inputsBox}>
                 {/* //!NAMES */}
                 <label className={s.labes} name="name">Name: </label>
                 <input className={s.inputs} onChange={handlerInputChange} value={formInf?.name} type="text" name="name" />  
-                  {errors.name?<p>{errors.name}</p>:""}
+                  {errors.name?<p className={s.error}>{errors.name}</p>:""}
                   {/* //! DESCRIPTION */}
                 <label className={s.labes} name="descrition">Description: </label>
                 <textarea className={s.inputsDes} onChange={handlerInputChange} value={formInf.description}  name="description" />
-                {errors.description?<p>{errors.description}</p>:""}
+                {errors.description?<p className={s.error}>{errors.description}</p>:""}
                     {/* //! IMAGE */}
                 <label className={s.labes} name="img">Image: </label>
                 <input className={s.inputs} onChange={handlerInputChange} value={formInf.img} type="text" name="img" />
-                {errors.img?<p>{errors.img}</p>:""}
+                {errors.img?<p className={s.error}>{errors.img}</p>:""}
                      {/* //! RELEASED */}
                 <label className={s.labes} name="released">Released: </label>
                 <input className={s.inputs} onChange={handlerInputChange} value={formInf.released} type="date" name="released"/>
-                {errors.released?<p>{errors.released}</p>:""}
+                {errors.released?<p className={s.error}>{errors.released}</p>:""}
 
                      {/* //! RATING */}
                 <label className={s.labes} name="rating">Rating: </label>
                 <input className={s.inputs} onChange={handlerInputChange} value={formInf.rating} type="number" name="rating"/>
-                {errors.rating?<p>{errors.rating}</p>:""}
+                {errors.rating?<p className={s.error}>{errors.rating}</p>:""}
               </div>
                 {/* //!generos/////////// */}
               <div className={s.checkbox}>
@@ -146,7 +146,7 @@ setErrors(validator(formInf))
                      )
                     })
                    }
-                         {errors.genres?<p>{errors.genres}</p>:""}
+                         {errors.genres?<p className={s.error}>{errors.genres}</p>:""}
                 </div>
                     {/* //!  //////platforms////// */}
                 <label className={s.labes} name="plataforms">Plataforms: </label>
@@ -160,7 +160,7 @@ setErrors(validator(formInf))
                          </label>)
                         })
                     }
-                          {errors.platforms?<p>{errors.platforms}</p>:""}
+                          {errors.platforms?<p className={s.error}>{errors.platforms}</p>:""}
                 </div>
               </div>
             </form>
