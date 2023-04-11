@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getVideogamesByName } from "../../redux/actions";
+import s from "./SearchBar.module.css"
 
 const SearchBar=()=>{
     //! este name capturara lo que el input para mandarlo a la action y de ahi al back para buscar por numero 
@@ -23,9 +24,9 @@ dispatch(getVideogamesByName(name))
     return(
 
         <div>
-            <input type="text" value={name} onKeyUp={enter} onChange={(e)=>setName(e.target.value)}/>
+            <input className={s.inputS} type="text" value={name} onKeyUp={enter} onChange={(e)=>setName(e.target.value)}/>
             
-            <button onClick={handlerButton}>Buscar</button>
+            <button className={s.butt} onClick={handlerButton}>BUSCAR</button>
        
          </div>
     )

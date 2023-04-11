@@ -1,0 +1,11 @@
+.fondo{
+    background-color: #FAFFD6;
+}
+.botones{
+    margin-left: 0.2em;
+background-color: #FFA1B3;
+color: #FAFFD6;
+border: 2px solid #FAFFD6;
+border-radius: 4px;
+cursor: pointer;
+}

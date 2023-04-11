@@ -21,7 +21,7 @@ const getVideogames = async () => {
       //! SI NO LO TENGO EN EL ARRAY PUSHEO EL ID A MI ARRAY DE IDS
       arrId.push(id);
       //! P SE CONVIERTE EN UNA NUEVA PROMESA CON EL ID RANDOM GENERADO
-      p = axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`).then(
+      p = axios.get(``).then(
         (res) => res.data,
         (err) => err.message
       );

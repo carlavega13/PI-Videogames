@@ -1,0 +1,16 @@
+.selectF{
+    background-color: transparent;
+    padding-top: 0.2em ;
+    padding-bottom:  0.2em;
+    color:#FAFFD6 ;
+    font-size: 1.5em;
+    font-weight: 700;
+    -webkit-text-stroke: 1.5px rgb(210, 150, 150);
+    border: 2px solid #FAFFD6;
+    margin: 0.3em;
+    letter-spacing: 0.2em;
+    box-shadow: 0.5em 0em 3em 0.2em #2525256a;
+}
+option{
+    color: #252525;
+}
