@@ -4,20 +4,21 @@ import Filters from "../Filters/Filters"
 import {Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAgain } from "../../redux/actions";
-
+import s from "./NavBar.module.css"
 function NavBar() {
   const dispatch= useDispatch()
   const handlerGetAgain=()=>{
    dispatch(getAgain())
+   
   }
     return (
-      <div>
+      <div className={s.fondo}>
        <SearchBar/>
        <Filters/>
        <Link to="/creategame">
-      <button>Create Game</button>
+      <button className={s.butt}>CREATE GAME</button>
       </Link>
-      <button onClick={handlerGetAgain}>GET ALL GAMES</button>
+      <button className={s.butt} onClick={handlerGetAgain}>GET ALL GAMES</button>
       </div>
     );
   }

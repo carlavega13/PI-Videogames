@@ -12,27 +12,39 @@ const videogames=useSelector(state=>state?.gamesCopia)
 let juego=videogames.filter(game=>game.id==id)
 //? EN JUEGO TENGO UN SOLO OBJETO
 juego=juego.shift()
-
+//! ESTRELLITAS---------------------------
+let estrellitas=[]
+ for (let i = 1; i <=Math.floor(juego?.rating) ; i++) {
+  //!agrego cada estrella al array
+estrellitas.push(i)
+  
+ }
+ //!---------------------------------------
 juego.description=juego?.description?.replaceAll(/<[^>]+>/g, " ")
 juego.description=juego?.description?.replaceAll("◆ ", " ")
 return(
 
-    <div>
+    <div className={s.fondo}>
+
        <Link to="/videogames">
-        <button>HOME</button>
+        <button className={s.butt}>HOME</button>
         </Link>
 {/* //? ID DEL JUEGO  */}
     <span>{juego?.id}</span>
 {/* //? NOMBRE DEL JUEGO  */}
-    <h1>{juego?.name}</h1>
+    <h1 className={s.name}>{juego?.name}</h1>
     {/*//? RAITING DEL JUEGO */}
-    <span>{juego?.rating}</span>
+    <span  className={estrellitas.length>3? s.estrellas:s.estrellasRoja}>{juego?.rating}</span>
+    {
+    //!mapeo el array de estrellitas y renderizo 1 por cada elemento
+    estrellitas.map(()=><span className={estrellitas.length>3? s.estrellas:s.estrellasRoja}>★</span>)
+   }
     {/*//? MAPEO CADA GENERO Y RENDERIZO UN P POR CADA GENERO */}
     {juego.genres?.map(g=>{
-        return <p key={g.genres?.id}>{g.name}</p>
+        return <p className={s.genres} key={g.genres?.id}>{g.name}</p>
     })}
         {juego.Genres?.map(g=>{
-        return <p key={g.Genres?.id}>{g.name}</p>
+        return <p className={s.genres} key={g.Genres?.id}>{g.name}</p>
     })}
     {/*//? FOTO DEL JUEGO */}
     <img className={s.detailFoto} src={juego.img} alt=" "/>

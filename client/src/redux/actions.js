@@ -8,6 +8,7 @@ import {
   POST_VIDEOGAME,
   GET_AGAIN,
   FILTER_CARDS,
+  ORDER_CARDS,
 } from "./actionsType";
 
 // //!  GET ALL VIDEO GAMES
@@ -83,4 +84,9 @@ export const getAgain = () => {
 //! FILTER CARD
 export const filterCards = (element) => {
   return { type: FILTER_CARDS, payload: element };
+};
+
+//! ORDER CARD
+export const orderCards = (order) => {
+  return { type: ORDER_CARDS, payload: order };
 };

@@ -7,6 +7,7 @@ import Paginates from "../Paginated/Paginated";
 import s from"./Home.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { getAllVideogames, getGenres} from "../../redux/actions";
+import Loader from "../Loader/Loader";
 
 function Home() {
   const [page,setPage]=useState(1)
@@ -28,18 +29,22 @@ if(sliceVideogame.length>16){
 }
 
 useEffect(()=>{
+  if(allVideogames?.length===0){
+  console.log("haciendo get");
+    dispatch(getAllVideogames())
+
+  }
 
 },[page,gamesCopia])
-//! si recargo la pagina vuelvo a pedir los juegos 
-if(allVideogames?.length===0){
-
-  dispatch(getAllVideogames())
-}
 //! si recargo la pag pido denuevo los generos
 if(genres?.length===0){
   dispatch(getGenres())
 }
-
+if(allVideogames.length===0){
+  return(
+    <Loader/>
+  )
+}
     return (
       <div className={s.principalBox}>
         <NavBar />

@@ -1,3 +1,63 @@
+.fondo{
+  background-color:#e6eac5 ; 
+  width: 100vw;
+  height: 100%;
+
+}
 .detailFoto{
-    width: 20em;
+    width: 50em;
+    border-radius: 15px;
+    box-shadow: 0em 0em 7em 0.1em #252525a9;
+}
+
+.estrellas{
+  margin-left: 0.5em;
+  color: #6dd353;
+  
+  }
+  .estrellasRoja{
+    margin-left: 0.5em;
+    color:rgb(204, 43, 43)
+  }
+  
+  .butt{
+    display: block;
+    border: 1px solid rgba(245, 222, 179, 0.697);
+    font-weight: 500;
+
+    margin-left: 2.5em;
+    font-size: 1em;
+    letter-spacing: 0.3em;
+    padding-top:0.6em ;
+    padding-bottom:0.6em ;
+    padding-left:0.9em ;
+    padding-right:0.9em ;
+
+    border-radius: 6px;
+    cursor:pointer;
+    background-image: linear-gradient(to left,#b0e0a4,#FFA1B3,#CBF5AF);
+    background-size: 200%;
+    box-shadow: 0.5em 0em 3em 0.2em #2525257d;
+    transition: 1s;
+}
+.butt:hover{
+    background-position: right;
+    box-shadow: 0.5em 0em 5em 0.5em #252525bd;
+}
+
+
+@keyframes tracking-in-expand-forward-top{0%{letter-spacing:-.2em;transform:translateZ(-700px) translateY(-100px);opacity:0}40%{opacity:.6}100%{transform:translateZ(0) translateY(0);opacity:1}}
+.name{
+  animation:tracking-in-expand-forward-top 1.5s linear both;
+  font-size: 3em;
+  color: #FFA1B3;
+  letter-spacing: 0.3em;
+  -webkit-text-stroke: 2px rgb(210, 150, 150);
+  text-shadow:#f805328f 0em 0em 0.3em ;
+}
+.genres{
+  font-size: 2em;
+  letter-spacing: 0.3em;
+  font-weight: 400;
+  color: #252525b9;
 }

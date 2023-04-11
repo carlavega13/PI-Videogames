@@ -7,7 +7,7 @@ import CreateForm from "./components/CreateForm/CreateForm";
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/videogames" element={<Home />} />

@@ -1,3 +1,4 @@
+import s from "./Paginated.module.css"
 const Paginates=(props)=>{
     //! numbers va a guardar los numeros que van a ser renderizados en los botones de paginado
     let numbers=[]
@@ -38,14 +39,14 @@ const handlerAdelante=()=>{
 // ! solo se renderiza si tengo mas de 15 juegos
 if(numbers.length>1){
   return(
-    <div>
-         <button onClick={handlerAtras}>{"<"}</button>
+    <div className={s.fondo}>
+         <button className={s.botones} onClick={handlerAtras}>{"<"}</button>
         {
             numbers?.map(numero=>{
-                return <button onClick={()=>handlerPaginater(numero)} key={numero}>{numero}</button>
+                return <button className={s.botones} onClick={()=>handlerPaginater(numero)} key={numero}>{numero}</button>
             })
         }
-        <button onClick={handlerAdelante}>{">"}</button>
+        <button className={s.botones} onClick={handlerAdelante}>{">"}</button>
     </div>
 )
 }
