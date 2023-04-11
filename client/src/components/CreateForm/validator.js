@@ -1,7 +1,12 @@
-const validator = (
-  { name, description, img, released, rating, genres, platforms },
-  errors
-) => {
+const validator = ({
+  name,
+  description,
+  img,
+  released,
+  rating,
+  genres,
+  platforms,
+}) => {
   const errors1 = {
     name: "",
     description: "",
@@ -57,7 +62,7 @@ const validator = (
   //! valido el rating
   //? el rating no puede estar vacio
   if (rating.length === 0) {
-    errors.rating = "The rating cannot be empty";
+    errors1.rating = "The rating cannot be empty";
   }
   //? el rating no puede ser mas de 5
   if (rating > 5 || rating < 0) {
@@ -72,7 +77,6 @@ const validator = (
   if (platforms.length === 0) {
     errors1.platforms = "You must select at least one platform";
   }
-
   return errors1;
 };
 export default validator;

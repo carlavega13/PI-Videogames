@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import s from "./Detail.module.css"
 import { Link } from "react-router-dom";
-import {GiRoundStar} from 'react-icons/gi';
+
 const Detail=()=>{
     //? SACO  EL ID QUE ME MANDO POR PARAMS
 const {id}=useParams()
@@ -37,7 +37,7 @@ return(
     <span  className={estrellitas.length>3? s.estrellas:s.estrellasRoja}>{juego?.rating}</span>
     {
     //!mapeo el array de estrellitas y renderizo 1 por cada elemento
-    estrellitas.map(()=><GiRoundStar className={estrellitas.length>3? s.estrellas:s.estrellasRoja}/>)
+    estrellitas.map(()=><span className={estrellitas.length>3? s.estrellas:s.estrellasRoja}>★</span>)
    }
     {/*//? MAPEO CADA GENERO Y RENDERIZO UN P POR CADA GENERO */}
     {juego.genres?.map(g=>{
