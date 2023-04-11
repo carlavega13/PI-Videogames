@@ -16,7 +16,7 @@ const[formInf,setFormInf]=useState({
     genres:[],
     platforms:[]
 })
-const[flag,setFlag]=useState(false)
+// const[flag,setFlag]=useState(false)
 //* estado errors
 const [errors,setErrors]=useState({
     name:"",
@@ -86,13 +86,13 @@ setErrors(validator(formInf))
 //! si no tengo ningun error ....
 if(!errors.name&&!errors.description&&!errors.img&&!errors.released&&!errors.rating&&!errors.genres&&!errors.platforms){
     //! despacho la action que postea
-    // dispatch(postVideogame(formInf))
+    dispatch(postVideogame(formInf))
 
     //! tiro un alert para decir que se posteo el game
     alert("Your game has been posted")
-    // dispatch(getAllVideogames())
+    dispatch(getAllVideogames())
     //! y me muevo al home 
-    // navigate("/videogames")
+    navigate("/videogames")
 
 }else{
 
@@ -101,10 +101,10 @@ if(!errors.name&&!errors.description&&!errors.img&&!errors.released&&!errors.rat
 }
 }
 useEffect(()=>{
-    // errors=validator(formInf)
-console.log("RENDERING FORM",errors);
-},[errors,formInf])
-console.log("pasa",errors);
+setErrors(validator(formInf))
+// console.log("RENDERING FORM",errors);
+},[formInf])
+// console.log("pasa",errors);
     return(
         <div className={s.fondo}>
             <h1>Create your Game</h1>
@@ -118,19 +118,20 @@ console.log("pasa",errors);
                   {/* //! DESCRIPTION */}
                 <label className={s.labes} name="descrition">Description: </label>
                 <textarea className={s.inputsDes} onChange={handlerInputChange} value={formInf.description}  name="description" />
-
+                {errors.description?<p>{errors.description}</p>:""}
                     {/* //! IMAGE */}
                 <label className={s.labes} name="img">Image: </label>
                 <input className={s.inputs} onChange={handlerInputChange} value={formInf.img} type="text" name="img" />
-
+                {errors.img?<p>{errors.img}</p>:""}
                      {/* //! RELEASED */}
                 <label className={s.labes} name="released">Released: </label>
                 <input className={s.inputs} onChange={handlerInputChange} value={formInf.released} type="date" name="released"/>
-
+                {errors.released?<p>{errors.released}</p>:""}
 
                      {/* //! RATING */}
                 <label className={s.labes} name="rating">Rating: </label>
                 <input className={s.inputs} onChange={handlerInputChange} value={formInf.rating} type="number" name="rating"/>
+                {errors.rating?<p>{errors.rating}</p>:""}
               </div>
                 {/* //!generos/////////// */}
               <div className={s.checkbox}>
@@ -145,6 +146,7 @@ console.log("pasa",errors);
                      )
                     })
                    }
+                         {errors.genres?<p>{errors.genres}</p>:""}
                 </div>
                     {/* //!  //////platforms////// */}
                 <label className={s.labes} name="plataforms">Plataforms: </label>
@@ -158,6 +160,7 @@ console.log("pasa",errors);
                          </label>)
                         })
                     }
+                          {errors.platforms?<p>{errors.platforms}</p>:""}
                 </div>
               </div>
             </form>
