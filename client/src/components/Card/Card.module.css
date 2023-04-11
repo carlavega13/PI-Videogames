@@ -60,7 +60,7 @@ color: #6dd353;
   color:rgb(204, 43, 43)
 }
 .name{
-
+font-size: 1.5em;
   display: block;
   -webkit-text-stroke: 2px rgba(246, 149, 149, 0.375);
   letter-spacing: 0.1em;
