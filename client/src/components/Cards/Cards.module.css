@@ -8,7 +8,7 @@ flex-direction: column;
 
 }
 .page{
-    /* background-color: #202020; */
+
     height: fit-content;
     font-size: 1em;
     letter-spacing: 0.8em;
@@ -16,19 +16,18 @@ flex-direction: column;
   
 }
 .error{
- height: 100%;
-    width: 100%;
+
     display: flex;
     flex-direction: column;
   background-color: rgba(229, 168, 168, 0.55);
 align-items: center;
-padding-bottom: 13em;
+padding-bottom: 10em;
 
 }
 .errorFoto{
     
- width: 16em;
-/* margin-top: 6em; */
+ width: 10em;
+
 }
 .errorTitulo{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -46,7 +45,7 @@ padding-bottom: 13em;
     letter-spacing: 0.2em;
     font-weight: 600;
     font-size: 1.5em;
-    margin-bottom: 10em;
+    margin-bottom: 5em;
     margin-top: 4em;
     box-shadow: 0em 0em 5em 0.5em #202020;
 }
