@@ -9,6 +9,7 @@ import {
   GET_AGAIN,
   FILTER_CARDS,
   ORDER_CARDS,
+  DELETE_ALL,
 } from "./actionsType";
 
 // //!  GET ALL VIDEO GAMES
@@ -84,6 +85,9 @@ export const getAgain = () => {
 //! FILTER CARD
 export const filterCards = (element) => {
   return { type: FILTER_CARDS, payload: element };
+};
+export const deleteAll = () => {
+  return { type: DELETE_ALL };
 };
 
 //! ORDER CARD

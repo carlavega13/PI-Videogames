@@ -1,10 +1,3 @@
-let estrellitas = [];
-let a = 3.56;
-const b = () => {
-  for (let i = 1; i <= Math.floor(a); i++) {
-    console.log(i);
-    estrellitas.push(i);
-  }
-  return estrellitas;
-};
-console.log(b());
+let gamesCopia = [{ made: true }, {}];
+gamesCopia = gamesCopia.filter((juego) => !juego.made);
+console.log(gamesCopia);

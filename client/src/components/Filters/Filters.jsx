@@ -7,8 +7,8 @@ const Filters=(props)=>{
 
 //?    HANDLER SELECT CHANGE
 const handlerSelectChange=(event)=>{
-
-    if(event.target.name==="order"){
+     if(event.target.value!=="default"){
+           if(event.target.name==="order"){
 
         dispatch(orderCards(event.target.value))
 
@@ -16,6 +16,8 @@ const handlerSelectChange=(event)=>{
     if(event.target.name==="filter"){
         dispatch(filterCards(event.target.value))
     }
+     }
+ 
     props.setPage(1)
     }
     return(
