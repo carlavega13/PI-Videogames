@@ -4,7 +4,7 @@ flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
 
- background-color: #FAFFD6;   
+ background-color: #0c0c07;   
 
 }
 .page{
@@ -51,6 +51,7 @@ padding-bottom: 13em;
     box-shadow: 0em 0em 5em 0.5em #202020;
 }
 .cards{
+    justify-content: center;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
