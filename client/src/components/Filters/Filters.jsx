@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { filterCards,orderCards } from "../../redux/actions"
 import s from "./Filters.module.css"
-const Filters=()=>{
+const Filters=(props)=>{
     const dispatch=useDispatch()
     const {genres}=useSelector(status=>status)
 
@@ -16,6 +16,7 @@ const handlerSelectChange=(event)=>{
     if(event.target.name==="filter"){
         dispatch(filterCards(event.target.value))
     }
+    props.setPage(1)
     }
     return(
         <div>

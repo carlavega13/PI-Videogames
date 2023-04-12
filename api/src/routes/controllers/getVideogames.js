@@ -3,6 +3,7 @@ const { API_KEY } = process.env;
 const { Videogame, Genre } = require("../../db");
 const getVideogames = async () => {
   try {
+    console.log("get videogames");
     //todo      ESTO ES DE LA API
     //*VARIABLES
     let id = 1;
@@ -74,6 +75,7 @@ const getVideogames = async () => {
     }
     // ! SI LA BD TIENE COSAS RESPONDO CON LAS 2 COSAS JUNTAS
     arrResult = [...arrResult, ...bd];
+
     return arrResult;
   } catch (error) {
     return error.message;

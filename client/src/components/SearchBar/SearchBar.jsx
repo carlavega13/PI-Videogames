@@ -11,14 +11,24 @@ const SearchBar=()=>{
     //! esta funcion me permite no usar el boton buscar y usar el enter 
     const enter=(event)=>{
         if(event.keyCode===13){
-dispatch(getVideogamesByName(name))
-     setName("")
+        if(name.trim()===""){
+            alert("You have to enter a name")
+        }else{
+            
+            dispatch(getVideogamesByName(name.trim()))
+            setName("")
+        }
   }
      }
 
      const handlerButton=()=>{
-        dispatch(getVideogamesByName(name))
-        setName("")
+        if(name.trim()===""){
+            alert("You have to enter a name")
+        }else{
+            
+            dispatch(getVideogamesByName(name.trim()))
+            setName("")
+        }
      }
 
     return(

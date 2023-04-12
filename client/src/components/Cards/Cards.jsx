@@ -9,6 +9,7 @@ function Cards (props) {
     return (
       <div className={s.principalBox}>
         {/* //? MAP 1 CARD POR JUEGO */}
+        <h5>{`Page: ${props.page}`}</h5>
         {
         props.sliceVideogame?.map((game)=>{
           if(game.img){

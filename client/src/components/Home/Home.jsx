@@ -35,6 +35,7 @@ useEffect(()=>{
 
   }
 
+
 },[page,gamesCopia])
 //! si recargo la pag pido denuevo los generos
 if(genres?.length===0){
@@ -47,9 +48,9 @@ if(allVideogames.length===0){
 }
     return (
       <div className={s.principalBox}>
-        <NavBar />
+        <NavBar setPage={setPage} />
         <Paginates page={page} setPage={setPage} gamesCopia={gamesCopia?.length}/>
-        <Cards sliceVideogame={sliceVideogame}/>
+        <Cards page={page} sliceVideogame={sliceVideogame}/>
       </div>
     );
   }

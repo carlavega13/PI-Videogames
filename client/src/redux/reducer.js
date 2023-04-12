@@ -88,10 +88,10 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           gamesCopia: state.gamesCopia.sort((a, b) => {
-            if (a.name < b.name) {
+            if (a.name?.toLowerCase() < b.name?.toLowerCase()) {
               return -1;
             }
-            if (a.name > b.name) {
+            if (a.name?.toLowerCase() > b.name?.toLowerCase()) {
               return 1;
             }
           }),
@@ -101,10 +101,10 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           gamesCopia: state.gamesCopia.sort((a, b) => {
-            if (a.name < b.name) {
+            if (a.name?.toLowerCase() < b.name?.toLowerCase()) {
               return 1;
             }
-            if (a.name > b.name) {
+            if (a.name?.toLowerCase() > b.name?.toLowerCase()) {
               return -1;
             }
           }),
