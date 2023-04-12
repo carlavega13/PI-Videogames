@@ -1,4 +1,5 @@
 import {
+  DELETE_ALL,
   FILTER_CARDS,
   GET_AGAIN,
   GET_ALL_VIDEOGAMES,
@@ -45,19 +46,17 @@ const reducer = (state = initialState, action) => {
       };
 
     case FILTER_CARDS:
+      if (action.payload === "Existing") {
+        return {
+          ...state,
+          gamesCopia: state.allVideogames.filter((juego) => !juego.made),
+        };
+      }
       if (action.payload === "Created") {
         return {
           ...state,
           gamesCopia: state.allVideogames.filter(
             (juego) => juego.made === true
-          ),
-        };
-      }
-      if (action.payload === "Existing") {
-        return {
-          ...state,
-          gamesCopia: state.allVideogames.filter(
-            (juego) => juego.made === false
           ),
         };
       }
@@ -88,10 +87,10 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           gamesCopia: state.gamesCopia.sort((a, b) => {
-            if (a.name < b.name) {
+            if (a.name?.toLowerCase() < b.name?.toLowerCase()) {
               return -1;
             }
-            if (a.name > b.name) {
+            if (a.name?.toLowerCase() > b.name?.toLowerCase()) {
               return 1;
             }
           }),
@@ -101,10 +100,10 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           gamesCopia: state.gamesCopia.sort((a, b) => {
-            if (a.name < b.name) {
+            if (a.name?.toLowerCase() < b.name?.toLowerCase()) {
               return 1;
             }
-            if (a.name > b.name) {
+            if (a.name?.toLowerCase() > b.name?.toLowerCase()) {
               return -1;
             }
           }),
@@ -138,6 +137,12 @@ const reducer = (state = initialState, action) => {
         };
       }
       return { ...state };
+    case DELETE_ALL:
+      return {
+        ...state,
+        allVideogames: [],
+        gamesCopia: [],
+      };
     default:
       return { ...state };
   }

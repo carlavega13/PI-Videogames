@@ -5,7 +5,7 @@ import {Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAgain } from "../../redux/actions";
 import s from "./NavBar.module.css"
-function NavBar() {
+function NavBar(props) {
   const dispatch= useDispatch()
   const handlerGetAgain=()=>{
    dispatch(getAgain())
@@ -13,8 +13,8 @@ function NavBar() {
   }
     return (
       <div className={s.fondo}>
-       <SearchBar/>
-       <Filters/>
+       <SearchBar />
+       <Filters setPage={props.setPage}/>
        <Link to="/creategame">
       <button className={s.butt}>CREATE GAME</button>
       </Link>

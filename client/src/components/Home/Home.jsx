@@ -21,9 +21,13 @@ function Home() {
 
 if(sliceVideogame.length>16){
   if(page===1){
+
     sliceVideogame=gamesCopia?.slice(0*15,page*15)
+
   }else{
+
     sliceVideogame=gamesCopia?.slice(page*15,page*15+15)
+
   }
   
 }
@@ -34,6 +38,7 @@ useEffect(()=>{
     dispatch(getAllVideogames())
 
   }
+
 
 },[page,gamesCopia])
 //! si recargo la pag pido denuevo los generos
@@ -47,9 +52,9 @@ if(allVideogames.length===0){
 }
     return (
       <div className={s.principalBox}>
-        <NavBar />
+        <NavBar setPage={setPage} />
         <Paginates page={page} setPage={setPage} gamesCopia={gamesCopia?.length}/>
-        <Cards sliceVideogame={sliceVideogame}/>
+        <Cards page={page} sliceVideogame={sliceVideogame}/>
       </div>
     );
   }

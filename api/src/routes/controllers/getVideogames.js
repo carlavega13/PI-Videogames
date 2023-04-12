@@ -53,11 +53,12 @@ const getVideogames = async () => {
           rating,
           genres,
           img: background_image,
-          made: false,
+          // made: false,
         };
       }
     );
-
+    ///! FILTRO POR SI ME LLEGARON JUEGOS SIN IMAGENES
+    arrResult = arrResult.filter((j) => j.img !== null);
     //todo API//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //*   ACA LOS DE LA BASE DE DATO  */
 

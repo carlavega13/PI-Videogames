@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getAllVideogames, postVideogame } from "../../redux/actions";
+import {getAllVideogames, postVideogame,deleteAll } from "../../redux/actions";
 import validator from "./validator"
 import {useNavigate,Link} from "react-router-dom"
 import s from "./CreateForm.module.css"
 const CreateForm=()=>{
     const dispatch=useDispatch()
+    const navigate=useNavigate()
     //* estado de la info del form
 const[formInf,setFormInf]=useState({
     name:"",
@@ -16,7 +17,7 @@ const[formInf,setFormInf]=useState({
     genres:[],
     platforms:[]
 })
-// const[flag,setFlag]=useState(false)
+
 //* estado errors
 const [errors,setErrors]=useState({
     name:"",
@@ -28,7 +29,6 @@ const [errors,setErrors]=useState({
     platforms:""
 })
 
-const navigate=useNavigate()
 
     const {genres,allVideogames}=useSelector((status)=>status)
     //!este array es para guardar las plataformas sin repetir
@@ -81,8 +81,7 @@ const handlerSubmit=(event)=>{
 event.preventDefault()
 //!valido la info
 setErrors(validator(formInf))
-//   setFlag(!flag)
-  console.log("errors despues de redefinir",errors);
+
 //! si no tengo ningun error ....
 if(!errors.name&&!errors.description&&!errors.img&&!errors.released&&!errors.rating&&!errors.genres&&!errors.platforms){
     //! despacho la action que postea
@@ -90,7 +89,8 @@ if(!errors.name&&!errors.description&&!errors.img&&!errors.released&&!errors.rat
 
     //! tiro un alert para decir que se posteo el game
     alert("Your game has been posted")
-    dispatch(getAllVideogames())
+    dispatch(deleteAll())
+
     //! y me muevo al home 
     navigate("/videogames")
 
@@ -102,9 +102,9 @@ if(!errors.name&&!errors.description&&!errors.img&&!errors.released&&!errors.rat
 }
 useEffect(()=>{
 setErrors(validator(formInf))
-// console.log("RENDERING FORM",errors);
+
 },[formInf])
-// console.log("pasa",errors);
+
     return(
         <div className={s.fondo}>
             <h1 className={s.titulo}>Create your Game</h1>
