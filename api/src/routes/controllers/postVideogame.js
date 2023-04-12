@@ -6,20 +6,10 @@ const postVideogame = async (videogame) => {
   //? DESESTRUCTURO TODAS LAS PROPIEDSADES DE REQ.BODY (VIENE POR PARAMETRO)
   let { name, description, platforms, img, released, rating, genres } =
     videogame;
-  // console.log(videogame);
+
   rating = rating.toString();
   //? VALIDO QUE ME HAYAN MANDADO TODOS LOS CAMPOS
   if (!name || !description || !platforms || !img || !released || !rating) {
-    console.log(
-      "DENTRO DE FN POST-VG",
-      name,
-      description,
-      platforms,
-      img,
-      released,
-      rating
-    );
-    console.log("released", released);
     throw new Error("required data is missing!");
   }
   //? VALIDO QUE EL NOMBRE NO TENGA MAS DE 60 CARACTERES

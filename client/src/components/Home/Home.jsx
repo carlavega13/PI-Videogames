@@ -16,18 +16,18 @@ function Home() {
 
   //!     AGARRO A TODOS LOS VIDEOJUEGOS (ANTES PREGUNTO SI ESTAN "?")
   const{ gamesCopia,allVideogames,genres }= useSelector((state)=>state)
-// console.log("alllll",allVideogames);
+
   let sliceVideogame=gamesCopia
 
 if(sliceVideogame.length>16){
   if(page===1){
-    // console.log(sliceVideogame);
+
     sliceVideogame=gamesCopia?.slice(0*15,page*15)
-// console.log("tamaño por pagina",sliceVideogame.length);
+
   }else{
-// console.log(sliceVideogame);
+
     sliceVideogame=gamesCopia?.slice(page*15,page*15+15)
-  //  console.log("tamaño por pagina",sliceVideogame.length);
+
   }
   
 }

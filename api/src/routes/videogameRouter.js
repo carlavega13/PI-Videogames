@@ -22,12 +22,12 @@ videogamesRouter.get("/name", async (req, res) => {
 videogamesRouter.post("/", async (req, res) => {
   try {
     //? NEW GAME ES IGUAL A LA EJECUCION DE NUESTRO CONTROLADOR
-    console.log(req.body);
+
     const newVideogame = await postVideogame(req.body);
     res.status(200).json({ msg: newVideogame });
   } catch (error) {
     //? SI CACHEO UN ERROR LO MANDO
-    console.log(error);
+
     res.status(400).json({ err: error.message });
   }
 });

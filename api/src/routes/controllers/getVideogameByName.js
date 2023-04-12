@@ -4,7 +4,6 @@ const { Videogame } = require("../../db");
 const { Op } = require("sequelize");
 
 const getVideogameByName = async ({ name }) => {
-  console.log(name);
   try {
     //!  BUSCO EN LA DB SI LA QUERY CONTIENE EN EL NOMBRE DE LAS ENTIDADES
     const foundDB = await Videogame.findAll({
@@ -14,7 +13,6 @@ const getVideogameByName = async ({ name }) => {
         },
       },
     });
-    console.log(foundDB);
 
     //! LLAMO A LA API POR LO INGRESADO POR QUERY
     let response = await axios
@@ -61,7 +59,7 @@ const getVideogameByName = async ({ name }) => {
         };
       }
     );
-    console.log(response1.length);
+
     //! LA RESPUESTA LA RECORTO A 15 RESULTADOS
     if (foundDB.length === 0) {
       response1 = response1.slice(0, 15);
@@ -77,7 +75,6 @@ const getVideogameByName = async ({ name }) => {
       return response1;
     }
   } catch (error) {
-    console.log(error.message);
     return error.message;
   }
 };

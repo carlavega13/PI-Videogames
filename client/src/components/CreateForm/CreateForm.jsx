@@ -81,8 +81,7 @@ const handlerSubmit=(event)=>{
 event.preventDefault()
 //!valido la info
 setErrors(validator(formInf))
-//   setFlag(!flag)
-  console.log("errors despues de redefinir",errors);
+
 //! si no tengo ningun error ....
 if(!errors.name&&!errors.description&&!errors.img&&!errors.released&&!errors.rating&&!errors.genres&&!errors.platforms){
     //! despacho la action que postea
